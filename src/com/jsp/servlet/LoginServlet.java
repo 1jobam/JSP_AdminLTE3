@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 			
 			MemberVO loginUser = MemberServiceImpl.getInstance().getMember(id);
 			session.setAttribute("loginUser", loginUser);
-			session.setMaxInactiveInterval(10);
+			session.setMaxInactiveInterval(60*6);
 			
 		} catch (SQLException e) {
 			
