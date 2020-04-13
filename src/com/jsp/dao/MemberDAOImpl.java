@@ -75,4 +75,24 @@ public class MemberDAOImpl implements MemberDAO {
 		session.close();
 	}
 
+	@Override
+	public void disabledMember(String id) throws SQLException {
+		SqlSession session = sessionFactory.openSession(true);
+		try {
+			session.update("Member-Mapper.disabledMember", id);	
+		}finally {
+			session.close();	
+		}
+	}
+
+	@Override
+	public void enabledMember(String id) throws SQLException {
+		SqlSession session = sessionFactory.openSession(true);
+		try {
+			session.update("Member-Mapper.enabledMember", id);
+		}finally {
+			session.close();
+		}
+	}
+
 }

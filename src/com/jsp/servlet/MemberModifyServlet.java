@@ -1,5 +1,6 @@
 package com.jsp.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -8,11 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.jsp.dto.MemberVO;
 import com.jsp.request.MemberModifyRequest;
-import com.jsp.request.MemberRegistRequest;
 import com.jsp.service.MemberServiceImpl;
+import com.jsp.utils.GetUploadPath;
 import com.jsp.utils.ViewResolver;
 
 /**
@@ -61,10 +63,26 @@ public class MemberModifyServlet extends HttpServlet {
 		
 		try {
 			MemberServiceImpl.getInstance().modify(member);
+			
+			HttpSession session = request.getSession();
+			
+			MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+			if(member.getId().equals(loginUser.getId())) {
+				session.setAttribute("loginUser", member);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			url = "member/modify_fail";
+			url="member/modify_fail";
+			String oldFileName = member.getPicture();
+			String uploadPath=GetUploadPath.getUploadPath("member.picture.upload");
+			File oldFile=new File(uploadPath+File.separator+oldFileName);
+			if(oldFile.exists()) {
+				oldFile.delete();
+			}
 		}
+		
+		request.setAttribute("id", id);
 		
 		ViewResolver.view(request, response, url);
 	}

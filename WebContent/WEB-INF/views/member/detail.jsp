@@ -75,14 +75,22 @@
 	              <div class="card-footer">
 	        			<div class="row">
 			          		<div class="col-sm-3 text-center">
-			          			<button type="button" id="modifyBtn" class="btn btn-warning " onclick="OpenWindow('modify?id=${member.id}','회원수정','800','600')">수 정</button>
+<%-- 			          			<button type="button" id="modifyBtn" class="btn btn-warning " onclick="OpenWindow('modify?id=${member.id}','회원수정','800','600')">수 정</button> --%>
+			          			<button type="button" id="modifyBtn" class="btn btn-warning ">수 정</button>
 			          		</div>
 			          		<div class="col-sm-3text-center">
 				          		<button type="button" id="deleteBtn" class="btn btn-danger" >삭 제</button>
 			          		</div>
-			          		<div class="col-sm-3 text-center">
-			          			<button type="button" id="stopBtn" class="btn btn-info" >정 지</button>
-			          		</div>
+			          		<c:if test="${member.enabled eq 1}">
+			          			<div class="col-sm-3 text-center">
+			          			<button type="button" id="disabledBtn" class="btn btn-info" >정 지</button>
+			          			</div>
+			          		</c:if>
+			          		<c:if test="${member.enabled eq 0}">
+			          			<div class="col-sm-3 text-center">
+			          			<button type="button" id="enabledBtn" class="btn btn-info" >활성화</button>
+			          			</div>
+			          		</c:if>
 			          		<div class="col-sm-3 text-center">
 			            		<button type="button" id="listBtn" onclick="CloseWindow();" class="btn btn-primary pull-right">닫 기</button>
 			            	</div>
@@ -122,11 +130,14 @@
 		}
 	}); */
 	
-/* 	$('#modifyBtn').on('click',function(e){
+ 	$('#modifyBtn').on('click',function(e){
 		location.href="modify?id=${member.id}";
-	}); */
-	$('#stopBtn').on('click',function(e){
-		location.href="stop?id=${member.id}";
+	}); 
+	$('#disabledBtn').on('click',function(e){
+		location.href="disabled?id=${member.id}";
+	});
+	$('#enabledBtn').on('click',function(e){
+		location.href="enabled?id=${member.id}";
 	});
 	$('#deleteBtn').on('click',function(e){
 		var pwd = prompt("관리자 암호를 입력하세요");

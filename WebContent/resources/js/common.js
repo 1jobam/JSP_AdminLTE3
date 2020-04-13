@@ -43,3 +43,8 @@ function SubmitModifyMember(formRole){
 	var form = $('form[role="'+ formRole +'"]');
 	form.submit();
 }
+
+//form cancel
+function Cancel(){
+	history.go(-1);
+}

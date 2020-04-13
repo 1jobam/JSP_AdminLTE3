@@ -43,4 +43,17 @@
 		from member
 		where id=#{id}
 	</update>
+	
+	<update id="disabledMember">
+		update member 
+		set enabled=0
+		where id=#{id}
+	</update>
+	
+	<update id="enabledMember">
+		update member 
+		set enabled=1
+		where id=#{id}
+	</update>
+	
 </mapper>

@@ -85,7 +85,7 @@
 	              	<div class="row">
 			          	<button type="button" class="btn btn-warning col-sm-4 text-center" onclick="SubmitModifyMember('form')" >수정하기</button>
 			          	<div class="col-sm-4"></div>
-			          	<button type="button" class="btn btn-default col-sm-4 text-center" onclick="CloseWindow();" >취소하기</button>
+			          	<button type="button" class="btn btn-default col-sm-4 text-center" onclick="Cancel();" >취소하기</button>
 		          	</div>  	
 	              </div> 		          	     
 	      	  </form>
