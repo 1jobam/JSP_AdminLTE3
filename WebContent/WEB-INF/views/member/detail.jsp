@@ -3,9 +3,9 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ include file="/WEB-INF/views/include/open_header.jsp" %>
+<%-- <%@ include file="/WEB-INF/views/include/open_header.jsp" %> --%>
 
-
+<body>
   <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	  <section class="content-header">
@@ -109,7 +109,7 @@
 </form>
 
 
-<%@ include file="/WEB-INF/views/include/open_footer.jsp" %>
+<%-- <%@ include file="/WEB-INF/views/include/open_footer.jsp" %> --%>
 
 <script>
 	var imageURL = "picture/get?picture=${member.picture}";
@@ -168,7 +168,7 @@
 
 
 
-
+</body>
 
 
   

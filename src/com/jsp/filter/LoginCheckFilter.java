@@ -61,10 +61,9 @@ public class LoginCheckFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		String excludeURLNames = fConfig.getInitParameter("exclude");
 		StringTokenizer st = new StringTokenizer(excludeURLNames, ",");
-		while (st.hasMoreElements()) {
+		while (st.hasMoreTokens()) {
 			exURLs.add(st.nextToken());
 		}
-		System.out.println(exURLs);
 	}
 
 	private boolean excludeCheck(String url) {

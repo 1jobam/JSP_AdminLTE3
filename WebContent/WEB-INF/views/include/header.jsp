@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="decoreator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 
 <!DOCTYPE html>
 <!--
@@ -13,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title></title>
+  <title><decoreator:title default="제목" /></title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
@@ -25,8 +26,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <!-- jQuery -->
   <script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
-	
+
+<decoreator:head />
 </head>
+<body class="hold-transition sidebar-mini">
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 

@@ -24,7 +24,7 @@ public class MemberListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "member/list";
 		
-		HttpSession session = request.getSession();
+		/*HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
@@ -34,7 +34,7 @@ public class MemberListServlet extends HttpServlet {
 			ViewResolver.view(request, response, url);
 			
 			return;
-		}
+		}*/
 		
 		try {
 			List<MemberVO> memberList = MemberServiceImpl.getInstance().getMemberList();
