@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.jsp.dto.MemberVO;
-import com.jsp.mybatis.OracleMyBatisSqlSessionFactoryBuilder;
 
 public interface MemberDAO {
 
