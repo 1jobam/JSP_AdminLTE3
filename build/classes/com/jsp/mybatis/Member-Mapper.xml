@@ -14,6 +14,35 @@
 		from member
 	</select>
 	
+	<sql id="search">
+		<if test="searchType == 'i'.toString()">
+			and id like '%' || #{keyword} || '%'
+		</if>
+		<if test="searchType == 'p'.toString()">
+			and phone like '%' || #{keyword} || '%'
+		</if>
+		<if test="searchType == 'e'.toString()">
+			and email like '%' || #{keyword} || '%'
+		</if>
+	</sql>
+	
+	<select id="selectSearchMemberList" resultType="member">
+		select
+		*
+		from member
+		where id is not null
+		<include refid="search" />
+		order by regDate desc
+	</select>
+	<select id="selectSearchMemberListCount" resultType="int">
+		select
+		count(*)
+		from member
+		where id is not null
+		<include refid="search" />
+		order by regDate desc
+	</select>
+	
 	<select id="selectMemberListCount" resultType="int">
 		select count(*)
 		from member
