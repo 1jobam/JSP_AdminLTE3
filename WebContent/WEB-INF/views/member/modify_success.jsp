@@ -5,5 +5,5 @@
 // 	alert("${param.id}님의 회원정보 수정이 정상적으로 완료되었습니다.");
 // 	window.close();
 	window.opener.location.reload(true);
-	location.href="detail?id=${id}";
+	location.href="detail.do?id=${id}";
 </script>

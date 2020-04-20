@@ -14,7 +14,7 @@ import com.jsp.dto.MemberVO;
 import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.ViewResolver;
 
-@WebServlet("/member/remove")
+//@WebServlet("/member/remove")
 public class MemberRemoveServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -18,7 +18,7 @@ import com.jsp.utils.ViewResolver;
 /**
  * Servlet implementation class MemberEnabledServlet
  */
-@WebServlet("/member/enabled")
+//@WebServlet("/member/enabled")
 public class MemberEnabledServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

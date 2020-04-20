@@ -20,7 +20,7 @@ import com.jsp.utils.ViewResolver;
 /**
  * Servlet implementation class MemberModifyServlet
  */
-@WebServlet("/member/modify")
+//@WebServlet("/member/modify")
 public class MemberModifyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		

@@ -17,7 +17,7 @@ import com.jsp.utils.ViewResolver;
 /**
  * Servlet implementation class MemberDetailServlet
  */
-@WebServlet("/member/detail")
+//@WebServlet("/member/detail")
 public class MemberDetailServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

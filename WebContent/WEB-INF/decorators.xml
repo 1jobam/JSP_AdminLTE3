@@ -12,7 +12,7 @@
 	</decorator>
 		
 	<excludes>
-		<pattern>/commons/login</pattern>
+		<pattern>/commons/login*.do</pattern>
 		<pattern>/*.jsp</pattern>
 		<pattern>/resources/**</pattern>
 	</excludes>

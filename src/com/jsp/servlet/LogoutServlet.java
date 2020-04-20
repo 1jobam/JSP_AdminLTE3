@@ -13,7 +13,7 @@ import com.jsp.utils.ViewResolver;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/commons/logout")
+//@WebServlet("/commons/logout")
 public class LogoutServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

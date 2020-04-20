@@ -51,7 +51,7 @@ function searchList_go(page){
 	jobForm.find("[name='page']").val(page);
 	jobForm.find("[name='searchType']").val($('select[name="searchType"]').val());
 	jobForm.find("[name='keyword']").val($('div.input-group>input[name="keyword"]').val());	
-	jobForm.attr("action","list").attr("method","post");
+	jobForm.attr("action","list.do").attr("method","post");
 	jobForm.submit();
 }
 </script>

@@ -112,7 +112,7 @@
 <%-- <%@ include file="/WEB-INF/views/include/open_footer.jsp" %> --%>
 
 <script>
-	var imageURL = "picture/get?picture=${member.picture}";
+	var imageURL = "picture/get.do?picture=${member.picture}";
 	$('div#pictureView').css({
 		'background-image' : 'url('+imageURL+')',
 		'background-position' : 'center',
@@ -131,23 +131,23 @@
 	}); */
 	
  	$('#modifyBtn').on('click',function(e){
-		location.href="modify?id=${member.id}";
+		location.href="modifyForm.do?id=${member.id}";
 	}); 
 	$('#disabledBtn').on('click',function(e){
-		location.href="disabled?id=${member.id}";
+		location.href="disabled.do?id=${member.id}";
 	});
 	$('#enabledBtn').on('click',function(e){
-		location.href="enabled?id=${member.id}";
+		location.href="enabled.do?id=${member.id}";
 	});
 	$('#deleteBtn').on('click',function(e){
 		var pwd = prompt("관리자 암호를 입력하세요");
 		
 		$.ajax({
-			url : "checkPassword?pwd="+pwd,
+			url : "checkPassword.do?pwd="+pwd,
 			type : "get",
 			success : function(data){
 				if(data=="SUCCESS"){
-					location.href="remove?id=${member.id}";
+					location.href="remove.do?id=${member.id}";
 				}else{
 					alert("패스워드가 일치하지 않습니다.");
 				}

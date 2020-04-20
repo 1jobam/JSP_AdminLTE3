@@ -41,13 +41,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<%=request.getContextPath() %>/member/list" class="nav-link">회원관리</a>
+        <a href="<%=request.getContextPath() %>/member/list.do" class="nav-link">회원관리</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<%=request.getContextPath() %>/board/list" class="nav-link">자유게시판</a>
+        <a href="<%=request.getContextPath() %>/board/list.do" class="nav-link">자유게시판</a>
       </li>
        <li class="nav-item d-none d-sm-inline-block">
-        <a href="<%=request.getContextPath() %>/pds/list" class="nav-link">자료실</a>
+        <a href="<%=request.getContextPath() %>/pds/list.do" class="nav-link">자료실</a>
       </li>
     </ul>
 
@@ -172,14 +172,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<%=request.getContextPath()%>/member/picture/get?picture=${loginUser.picture}" class="img-circle elevation-2" 
+          <img src="<%=request.getContextPath()%>/member/picture/get.do?picture=${loginUser.picture}" class="img-circle elevation-2" 
           onerror="this.src='http://placeimg.com/300/300/any'" alt="User Image">
         </div>
         <div class="info">
           <div class="row">
           	<a class="col-md-8" href="" class="d-block">${loginUser.id }</a>
           	<button class="btn btn-xs btn-primary col-xs-3 " type="button" 
-          		onclick="location.href='<%=request.getContextPath() %>/commons/logout';" >Logout</button>
+          		onclick="location.href='<%=request.getContextPath() %>/commons/logout.do';" >Logout</button>
           </div>
           <a href="tel:${loginUser.phone }">tel : ${loginUser.phone }</a><br/>
           <a href="mailto:${loginUser.email }">email : ${loginUser.email }</a>			          
@@ -191,13 +191,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
         	data-accordion="false">
         	<li class="nav-item" >
-                <a href="#" class="nav-link">
+                <a href="javascript:location.href='/member/list.do'" class="nav-link">
                   <i class="fas fa-user-friends nav-icon"></i>
                   <p>회원관리</p>
                 </a>
 	        </li>
 	        <li class="nav-item" >
-                <a href="#" class="nav-link">
+                <a href="javascript:location.href='/board/list.do'" class="nav-link">
                   <i class="fas fa-comments nav-icon"></i>
                   <p>자유게시판</p>
                 </a>

@@ -17,7 +17,7 @@ import com.jsp.utils.ViewResolver;
 /**
  * Servlet implementation class MemberDisabled
  */
-@WebServlet("/member/disabled")
+//@WebServlet("/member/disabled")
 public class MemberDisabledServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

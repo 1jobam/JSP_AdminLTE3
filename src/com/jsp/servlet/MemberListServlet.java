@@ -22,7 +22,7 @@ import com.jsp.utils.ViewResolver;
 /**
  * Servlet implementation class MemberListServlet
  */
-@WebServlet("/member/list")
+//@WebServlet("/member/list")
 public class MemberListServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

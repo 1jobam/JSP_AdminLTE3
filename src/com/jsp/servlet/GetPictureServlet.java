@@ -17,7 +17,7 @@ import com.jsp.utils.GetUploadPath;
 /**
  * Servlet implementation class GetPictureServlet
  */
-@WebServlet("/member/picture/get")
+//@WebServlet("/member/picture/get")
 public class GetPictureServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -7,6 +7,6 @@
 		window.close();
 		window.opener.location.reload();
 	}else{
-		location.href="<%=request.getContextPath()%>/commons/login";
+		location.href="<%=request.getContextPath()%>/commons/loginForm.do";
 	}
 </script>

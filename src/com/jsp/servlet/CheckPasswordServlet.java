@@ -16,7 +16,7 @@ import com.jsp.service.MemberServiceImpl;
 /**
  * Servlet implementation class CheckPassword
  */
-@WebServlet("/member/checkPassword")
+//@WebServlet("/member/checkPassword")
 public class CheckPasswordServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

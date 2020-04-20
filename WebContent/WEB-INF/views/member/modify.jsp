@@ -32,7 +32,7 @@
   
     <section class="content register-page" style="height: 586.391px;">       
 		<div class="register-box" style="min-width:450px;">
-	    	<form role="form" class="form-horizontal" action="/member/modify" method="post">
+	    	<form role="form" class="form-horizontal" action="/member/modify.do" method="post">
 				<input type="hidden" name="picture" value="${member.picture}" />
 	        	<div class="register-card-body" >
 	        		<div class="row">		
@@ -114,7 +114,7 @@
 <%@ include file="picture_js.jsp" %>
 
 <script>
-	var imageURL="picture/get?picture=${member.picture}";
+	var imageURL="picture/get.do?picture=${member.picture}";
 	$('div#pictureView').css({'background-image':'url('+imageURL+')',
 							  'background-position':'center',
 							  'background-size':'cover',

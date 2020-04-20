@@ -16,7 +16,7 @@ import com.jsp.exception.NotFoundIDException;
 import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.ViewResolver;
 
-@WebServlet("/commons/login")
+//@WebServlet("/commons/login")
 public class LoginServlet extends HttpServlet {
 
 	/*public void init(ServletConfig config) throws ServletException {
