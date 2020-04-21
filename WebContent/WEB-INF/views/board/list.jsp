@@ -31,7 +31,7 @@
     <section class="content">		
 		<div class="card">
 			<div class="card-header with-border">
-				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','글등록',600,400);">글등록</button>				
+				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','글등록',600,800);">글등록</button>				
 				<div id="keyword" class="card-tools" style="width:350px;">
 					<div class="input-group row">						
 						<select class="form-control col-md-4" name="searchType" id="searchType">
@@ -72,7 +72,7 @@
 						<tr style='font-size:0.85em;'>
 							<td>${board.bno }</td>
 							<td id="boardTitle" style="text-align:left;max-width: 100px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-							<a href="javascript:OpenWindow('detail.do${pageMaker.makeQuery(pageMaker.cri.page) }&bno=${board.bno }','상세보기',600,400);">
+							<a href="javascript:OpenWindow('detail.do${pageMaker.makeQuery(pageMaker.cri.page) }&bno=${board.bno }','상세보기',600,800);">
 								<span class="col-sm-12 ">${board.title }
 									<c:if test="${board.replycnt ne 0 }">		
 										<span class="nav-item">															

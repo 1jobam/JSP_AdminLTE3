@@ -23,8 +23,8 @@
 		<param-value>com.jsp.mybatis.OracleMyBatisSqlSessionFactory</param-value>
 	</context-param>
 	<listener>
-		<listener-class>com.jsp.listener.InitListener</listener-class>
-<!-- 		<listener-class>com.jsp.listener.InitBeanListener</listener-class> -->
+<!-- 		<listener-class>com.jsp.listener.InitListener</listener-class> -->
+		<listener-class>com.jsp.listener.InitBeanListener</listener-class>
 	</listener>
 
 

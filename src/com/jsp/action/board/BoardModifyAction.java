@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
+import com.jsp.request.BoardModifyRequest;
 import com.jsp.service.BoardService;
 import com.jsp.service.BoardServiceImpl;
 
-public class BoardDetailAction implements Action{
+public class BoardModifyAction implements Action{
 	
 	private BoardService boardService = BoardServiceImpl.getInstance();
 	
@@ -23,16 +24,21 @@ public class BoardDetailAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "board/detailBoard";
+		String url = "board/modify_success";
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		BoardModifyRequest boardModifyRequest = new BoardModifyRequest(bno, title, content);
+		
+		BoardVO board = boardModifyRequest.toBoardModify();
 		
 		try {
-			BoardVO board = boardService.getBoard(bno);
-			request.setAttribute("board", board);
+			boardService.modify(board);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			url = "error/500_error";
+			url = "board/modify_fail";
 		}
 		
 		return url;

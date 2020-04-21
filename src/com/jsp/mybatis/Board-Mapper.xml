@@ -60,19 +60,30 @@
 	<update id="updateBoard" parameterType="board">
 		update board
 		set
-		title=#{title},content=#{content},
+		title=#{title},content=#{content},updatedate=sysdate
 		where bno=#{bno}
 
 	</update>
 	
-	<update id="deleteBoard" parameterType="str">
+	<update id="deleteBoard" parameterType="int">
 		delete
 		from board
 		where bno=#{bno}
 	</update>
 	
 	<select id="selectBoardSeqNext" resultType="int">
-		select board_seq.nextval from dual
+		select 
+			board_seq.nextval 
+		from 
+			dual
 	</select>
+	
+	<update id="increaseViewCnt" parameterType="int">
+		update board 
+			set 
+		viewcnt = viewcnt + 1 
+			where 
+		bno = #{bno}	
+	</update>
 
 </mapper>

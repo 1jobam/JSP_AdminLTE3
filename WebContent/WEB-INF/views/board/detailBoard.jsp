@@ -139,7 +139,9 @@
 	<jsp:include page="detailBoard_js.jsp"></jsp:include>
 	
 <%-- 	<%@ include file="reply_js.jsp" %> --%>
-	
+<script>
+	window.opener.location.reload(true);
+</script>
 		
 </body>
 

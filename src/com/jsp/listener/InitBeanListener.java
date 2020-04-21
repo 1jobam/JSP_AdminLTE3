@@ -65,7 +65,7 @@ public class InitBeanListener implements ServletContextListener {
 		((MemberServiceImpl)service).setMemberDAO(memberDAO);
 		
 		((BoardServiceImpl)boardService).setBoardDAO(boardDAO);		
-//		((BoardServiceImpl)boardService).setReplyDAO(replyDAO);
+		((BoardServiceImpl)boardService).setReplyDAO(replyDAO);
 		
 		((ReplyServiceImpl)replyService).setReplyDAO(replyDAO);
 		

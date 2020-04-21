@@ -71,28 +71,46 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void updateBoard(BoardVO board) throws SQLException {
 		SqlSession session = sessionFactory.openSession(true);
-		session.update("Board-Mapper.updateBoard",board);
-		session.close();
+		try {
+			session.update("Board-Mapper.updateBoard",board);
+		}finally {
+			session.close();
+		}
 
 	}
 
 	@Override
 	public void deleteBoard(int bno) throws SQLException {
 		SqlSession session = sessionFactory.openSession(true);
-		session.update("Board-Mapper.deleteBoard", bno);
-		session.close();
+		try {
+			session.update("Board-Mapper.deleteBoard", bno);			
+		}finally {
+			session.close();			
+		}
+
 	}
 
 	@Override
 	public void increaseViewCnt(int bno) throws SQLException {
-		// TODO Auto-generated method stub
+		SqlSession session = sessionFactory.openSession(true);
+		try {
+			session.update("Board-Mapper.increaseViewCnt",bno);
+		}finally {
+			session.close();
+		}
 
 	}
 
 	@Override
 	public int selectBoardSeqNext() throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = sessionFactory.openSession();
+		int bno = 0;
+		try {
+			bno = session.selectOne("Board-Mapper.selectBoardSeqNext");			
+		}finally {
+			session.close();			
+		}
+		return bno;
 	}
 
 }

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.jsp.dao.BoardDAO;
+import com.jsp.dao.ReplyDAO;
 import com.jsp.dto.BoardVO;
-import com.jsp.dto.MemberVO;
 import com.jsp.request.PageMaker;
 import com.jsp.request.SearchCriteria;
 
@@ -26,11 +26,22 @@ public class BoardServiceImpl implements BoardService {
 	public void setBoardDAO(BoardDAO boardDAO) {
 		this.boardDAO = boardDAO;
 	}
+	
+	private ReplyDAO replyDAO;
+	
+	public void setReplyDAO(ReplyDAO replyDAO) {
+		this.replyDAO = replyDAO;
+	}
 
 	@Override
 	public Map<String, Object> getBoardList(SearchCriteria cri) throws SQLException {
 		List<BoardVO> boardList = boardDAO.selectBoardCriteria(cri);
-
+		
+		for(BoardVO board : boardList) {
+			int bno = board.getBno();
+			int replycnt = replyDAO.countReply(bno);
+			board.setReplycnt(replycnt);
+		}
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(boardDAO.selectBoardCriteriaTotalCount(cri));
@@ -44,6 +55,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO getBoard(int bno) throws SQLException {
+		boardDAO.increaseViewCnt(bno);		
 		BoardVO board = boardDAO.selectBoardByBno(bno);
 		return board;
 	}
