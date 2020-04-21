@@ -38,11 +38,6 @@ public class BoardServiceImpl implements BoardService {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("boardList", boardList);
 		dataMap.put("pageMaker", pageMaker);
-
-		System.out.println(boardList);
-		System.out.println(pageMaker);
-		System.out.println(dataMap);
-		
 		
 		return dataMap;
 	}
@@ -61,6 +56,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void write(BoardVO board) throws SQLException {
+		int bno = boardDAO.selectBoardSeqNext();
+		board.setBno(bno);
 		boardDAO.insertBoard(board);
 	}
 

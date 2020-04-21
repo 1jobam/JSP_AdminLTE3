@@ -9,33 +9,37 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
+import com.jsp.request.BoardRegistRequest;
 import com.jsp.service.BoardService;
 import com.jsp.service.BoardServiceImpl;
 
-public class BoardModifyFormAction implements Action{
-
+public class BoardRegistAction implements Action {
+	
 	private BoardService boardService = BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "board/modifyBoard";
+		String url = "board/regist_success";
+		
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
+		
+		BoardRegistRequest boardRegistRequest = new BoardRegistRequest(title, writer, content);
+		
+		BoardVO board = boardRegistRequest.toBoardVO();
 		
 		try {
-			
-			int bno = Integer.parseInt(request.getParameter("bno"));
-			
-			BoardVO board = boardService.getBoardForModify(bno);
-			
-			request.setAttribute("board", board);
-			
+			boardService.write(board);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			url = "error_500error";
+			url = "board/regist_fail";
 		}
+		
 		
 		return url;
 	}

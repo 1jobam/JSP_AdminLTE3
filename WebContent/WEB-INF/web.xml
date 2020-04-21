@@ -10,6 +10,10 @@
 		<param-name>boardDAO</param-name>
 		<param-value>com.jsp.dao.BoardDAOImpl</param-value>
 	</context-param>
+	<context-param>
+		<param-name>replyDAO</param-name>
+		<param-value>com.jsp.dao.ReplyDAOImpl</param-value>
+	</context-param>
 <!-- 	<context-param> -->
 <!-- 		<param-name>boardService</param-name> -->
 <!-- 		<param-value>com.jsp.service.BoardServiceImpl</param-value> -->
@@ -20,6 +24,7 @@
 	</context-param>
 	<listener>
 		<listener-class>com.jsp.listener.InitListener</listener-class>
+<!-- 		<listener-class>com.jsp.listener.InitBeanListener</listener-class> -->
 	</listener>
 
 

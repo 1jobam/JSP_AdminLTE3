@@ -83,7 +83,7 @@
 	
 </script>
 
-<%-- <%@ include file="/WEB-INF/views/commons/summernote.jsp" %> --%>
+<%@ include file="/WEB-INF/views/commons/summernote.jsp" %>
 
 </body>
 

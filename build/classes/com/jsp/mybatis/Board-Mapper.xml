@@ -33,7 +33,7 @@
 		from board
 		where bno is not null
 		<include refid="search" />
-		order by regDate desc
+		order by bno desc
 	</select>
 	<select id="selectSearchBoardListCount" resultType="int">
 		select
@@ -41,7 +41,7 @@
 		from board
 		where bno is not null
 		<include refid="search" />
-		order by regDate desc
+		order by bno desc
 	</select>
 	
 	<select id="selectBoardByBno" resultType="board" parameterType="int">
@@ -51,10 +51,10 @@
 		where bno = #{bno}
 	</select>
 	
-	<update id="insertBoard" parameterType="board">
+	<update id="insertBoard" parameterType="board" >
 		insert into
 		board(bno, title, writer, content, regdate)
-		values(boardtest.NEXTVAL, #{title}, #{writer}, #{content}, sysdate)
+		values(#{bno}, #{title}, #{writer}, #{content}, sysdate)
 	</update>
 
 	<update id="updateBoard" parameterType="board">
@@ -70,5 +70,9 @@
 		from board
 		where bno=#{bno}
 	</update>
+	
+	<select id="selectBoardSeqNext" resultType="int">
+		select board_seq.nextval from dual
+	</select>
 
 </mapper>

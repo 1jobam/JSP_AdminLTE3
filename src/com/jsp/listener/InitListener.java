@@ -1,7 +1,7 @@
 package com.jsp.listener;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -9,11 +9,12 @@ import javax.servlet.annotation.WebListener;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.jsp.action.board.BoardListAction;
 import com.jsp.dao.BoardDAOImpl;
 import com.jsp.dao.MemberDAOImpl;
+import com.jsp.dao.ReplyDAOImpl;
 import com.jsp.service.BoardServiceImpl;
 import com.jsp.service.MemberServiceImpl;
+import com.jsp.service.ReplyServiceImpl;
 
 @WebListener
 public class InitListener implements ServletContextListener {
@@ -26,13 +27,13 @@ public class InitListener implements ServletContextListener {
     	String SqlSessionType = sce.getServletContext().getInitParameter("sqlSessionFactory");
     	String DaoType = sce.getServletContext().getInitParameter("memberDAO");
     	String BoardDaoType = sce.getServletContext().getInitParameter("boardDAO");
-//    	String BoardServiceType = sce.getServletContext().getInitParameter("boardService");
+    	String replyDao = sce.getServletContext().getInitParameter("replyDAO");
     	
     	try {
     		
     		MemberDAOImpl memberDAOImpl = (MemberDAOImpl) Class.forName(DaoType).newInstance();
     		BoardDAOImpl boardDAOImpl = (BoardDAOImpl) Class.forName(BoardDaoType).newInstance();
-//    		BoardServiceImpl boardServiceImpl = (BoardServiceImpl) Class.forName(BoardServiceType).newInstance();
+    		ReplyDAOImpl replyDAOImpl = (ReplyDAOImpl) Class.forName(replyDao).newInstance();
     		SqlSessionFactory sessionFactory = (SqlSessionFactory)Class.forName(SqlSessionType).newInstance();
     		
     		//리프렉션
@@ -46,8 +47,10 @@ public class InitListener implements ServletContextListener {
 			
 			memberDAOImpl.setSessionFactory(sessionFactory);
 			boardDAOImpl.setSessionFactory(sessionFactory);
+			replyDAOImpl.setSessionFactory(sessionFactory);
 			BoardServiceImpl.getInstance().setBoardDAO(boardDAOImpl);
 			MemberServiceImpl.getInstance().setMemberDAO(memberDAOImpl);
+			ReplyServiceImpl.getInstance().setReplyDAO(replyDAOImpl);
 			
 			
 			//InvocationTargetException | NoSuchMethodException | 			
