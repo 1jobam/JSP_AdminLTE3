@@ -1,65 +1,77 @@
 package com.jsp.listener;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Method;
+import java.util.Enumeration;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-
-import com.jsp.dao.BoardDAOImpl;
-import com.jsp.dao.MemberDAOImpl;
-import com.jsp.dao.ReplyDAOImpl;
-import com.jsp.service.BoardServiceImpl;
-import com.jsp.service.MemberServiceImpl;
-import com.jsp.service.ReplyServiceImpl;
+import com.jsp.action.ApplicationContext;
 
 @WebListener
 public class InitListener implements ServletContextListener {
 
-    public void contextDestroyed(ServletContextEvent sce)  {
-    	
-    }
+	public void contextDestroyed(ServletContextEvent ctxEvent) {
+		// TODO Auto-generated method stub
+	}
 
-    public void contextInitialized(ServletContextEvent sce)  {
-    	String SqlSessionType = sce.getServletContext().getInitParameter("sqlSessionFactory");
-    	String DaoType = sce.getServletContext().getInitParameter("memberDAO");
-    	String BoardDaoType = sce.getServletContext().getInitParameter("boardDAO");
-    	String replyDao = sce.getServletContext().getInitParameter("replyDAO");
-    	
-    	try {
-    		
-    		MemberDAOImpl memberDAOImpl = (MemberDAOImpl) Class.forName(DaoType).newInstance();
-    		BoardDAOImpl boardDAOImpl = (BoardDAOImpl) Class.forName(BoardDaoType).newInstance();
-    		ReplyDAOImpl replyDAOImpl = (ReplyDAOImpl) Class.forName(replyDao).newInstance();
-    		SqlSessionFactory sessionFactory = (SqlSessionFactory)Class.forName(SqlSessionType).newInstance();
-    		
-    		//리프렉션
-    		
-//    		Class<?> cls = Class.forName(DaoType);
-//    		
-//    		Method setSqlSessionFactory = cls.getMethod("setSessionFactory", SqlSessionFactory.class);
-//    		
-//    		Object obj = cls.newInstance();
-//    		setSqlSessionFactory.invoke(obj, sessionFactory);
-			
-			memberDAOImpl.setSessionFactory(sessionFactory);
-			boardDAOImpl.setSessionFactory(sessionFactory);
-			replyDAOImpl.setSessionFactory(sessionFactory);
-			BoardServiceImpl.getInstance().setBoardDAO(boardDAOImpl);
-			MemberServiceImpl.getInstance().setMemberDAO(memberDAOImpl);
-			ReplyServiceImpl.getInstance().setReplyDAO(replyDAOImpl);
-			
-			
-			//InvocationTargetException | NoSuchMethodException | 			
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IllegalArgumentException | SecurityException e) {
-			e.printStackTrace();
+	public void contextInitialized(ServletContextEvent ctxEvent) {
+
+		Map<String, Object> applicationContext = ApplicationContext.getApplicationContext();
+
+		ServletContext ctx = ctxEvent.getServletContext();
+
+		// 1. 인스턴스 생성
+		Enumeration<String> paramNames = ctx.getInitParameterNames();
+
+		while (paramNames.hasMoreElements()) {
+			String paramName = paramNames.nextElement();
+			String classType = ctx.getInitParameter(paramName);
+			try {
+				Class<?> cls = Class.forName(classType);
+
+				Object targetObj = cls.newInstance();
+
+				applicationContext.put(paramName, targetObj);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
-    	
-    	
-    }
-    
-	
+		
+		//2. 인스턴스 의존성 확인 및 조립
+		paramNames = ctx.getInitParameterNames();
+		while (paramNames.hasMoreElements()) {
+			String paramName = paramNames.nextElement();
+			String classType = ctx.getInitParameter(paramName);
+			
+			try {
+				Class<?> cls = Class.forName(classType);
+
+				Method[] methods = cls.getMethods();
+
+				for (Method method : methods) {
+					// 의존성 여부 확인
+					if (method.getName().contains("set")) {
+						
+						System.out.println(method.getName());
+						
+						String setInstanceName = ((method.getName().replace("set", "")).charAt(0) + "").toLowerCase()
+								+ method.getName().substring(4);
+						
+						method.invoke(applicationContext.get(paramName), applicationContext.get(setInstanceName));
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		System.out.println(applicationContext);
+	}
+
 }

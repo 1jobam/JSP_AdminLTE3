@@ -15,7 +15,7 @@ import com.jsp.service.BoardServiceImpl;
 
 public class BoardModifyAction implements Action{
 	
-	private BoardService boardService = BoardServiceImpl.getInstance();
+	private BoardService boardService;// = BoardServiceImpl.getInstance();
 	
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;

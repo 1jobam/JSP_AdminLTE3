@@ -3,29 +3,48 @@
 	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<context-param>
-		<param-name>memberDAO</param-name>
-		<param-value>com.jsp.dao.MemberDAOImpl</param-value>
+		<param-name>boardService</param-name>
+		<param-value>com.jsp.service.BoardServiceImpl</param-value>
 	</context-param>
 	<context-param>
 		<param-name>boardDAO</param-name>
 		<param-value>com.jsp.dao.BoardDAOImpl</param-value>
 	</context-param>
+	
+	
+	<context-param>
+		<param-name>replyService</param-name>
+		<param-value>com.jsp.service.ReplyServiceImpl</param-value>
+	</context-param>
 	<context-param>
 		<param-name>replyDAO</param-name>
 		<param-value>com.jsp.dao.ReplyDAOImpl</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>memberService</param-name>
+		<param-value>com.jsp.service.MemberServiceImpl</param-value>
+	</context-param>
+	<context-param>
+		<param-name>memberDAO</param-name>
+		<param-value>com.jsp.dao.MemberDAOImpl</param-value>
 	</context-param>
 <!-- 	<context-param> -->
 <!-- 		<param-name>boardService</param-name> -->
 <!-- 		<param-value>com.jsp.service.BoardServiceImpl</param-value> -->
 <!-- 	</context-param> -->
 	<context-param>
-		<param-name>sqlSessionFactory</param-name>
+		<param-name>sessionFactory</param-name>
 		<param-value>com.jsp.mybatis.OracleMyBatisSqlSessionFactory</param-value>
 	</context-param>
 	<listener>
-<!-- 		<listener-class>com.jsp.listener.InitListener</listener-class> -->
-		<listener-class>com.jsp.listener.InitBeanListener</listener-class>
+		<listener-class>com.jsp.listener.InitListener</listener-class>
 	</listener>
+<!-- 	<listener> -->
+<!-- 		<listener-class>com.jsp.listener.InitListener</listener-class> -->
+<!-- 		<listener-class>com.jsp.listener.InitListener</listener-class> -->
+<!-- 		<listener-class>com.jsp.listener.InitBeanListener</listener-class> -->
+<!-- 	</listener> -->
 
 
 	<servlet>

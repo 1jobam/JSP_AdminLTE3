@@ -1,5 +1,6 @@
 package com.jsp.dispatcher;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.jsp.action.Action;
+import com.jsp.action.ApplicationContext;
 
 public class HandlerMapper {
 
@@ -31,8 +33,25 @@ public class HandlerMapper {
 			System.out.println(actionClassName);
 			
 			try {
-			Class actionClass = Class.forName(actionClassName);
+			Class<?> actionClass = Class.forName(actionClassName);
 			Action commandAction = (Action) actionClass.newInstance();
+			
+			//의존성 확인 및 조립
+			Method[] methods = actionClass.getMethods();
+			
+			for(Method method : methods) {
+				if(method.getName().contains("set")) {
+					String paramType= method.getParameterTypes()[0].getName();
+					paramType=paramType.substring(paramType.lastIndexOf(".")+1);
+					
+					paramType=(paramType.charAt(0) + "").toLowerCase() + paramType.substring(1);
+					try {
+						method.invoke(commandAction, ApplicationContext.getApplicationContext().get(paramType));
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
 			
 			commandMap.put(command, commandAction);
 			

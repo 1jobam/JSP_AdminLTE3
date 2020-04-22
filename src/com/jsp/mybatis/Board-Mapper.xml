@@ -27,21 +27,21 @@
 		</if>
 	</sql>
 
-	<select id="selectSearchBoardList" resultType="board">
+	<select id="selectSearchBoardList" parameterType="com.jsp.request.SearchCriteria" resultType="board">
 		select
 		*
 		from board
 		where bno is not null
 		<include refid="search" />
-		order by bno desc
+		order by regdate desc
 	</select>
-	<select id="selectSearchBoardListCount" resultType="int">
+	<select id="selectSearchBoardListCount" parameterType="com.jsp.request.SearchCriteria" resultType="int">
 		select
 		count(*)
 		from board
 		where bno is not null
 		<include refid="search" />
-		order by bno desc
+		order by regdate desc
 	</select>
 	
 	<select id="selectBoardByBno" resultType="board" parameterType="int">
@@ -51,10 +51,10 @@
 		where bno = #{bno}
 	</select>
 	
-	<update id="insertBoard" parameterType="board" >
+	<update id="insertBoard" parameterType="board">
 		insert into
-		board(bno, title, writer, content, regdate)
-		values(#{bno}, #{title}, #{writer}, #{content}, sysdate)
+		board(bno, title, writer, content)
+		values(#{bno}, #{title}, #{writer}, #{content})
 	</update>
 
 	<update id="updateBoard" parameterType="board">

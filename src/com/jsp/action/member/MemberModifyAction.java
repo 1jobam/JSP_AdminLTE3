@@ -12,10 +12,16 @@ import javax.servlet.http.HttpSession;
 import com.jsp.action.Action;
 import com.jsp.dto.MemberVO;
 import com.jsp.request.MemberModifyRequest;
+import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.GetUploadPath;
 
 public class MemberModifyAction implements Action {
+	
+	private MemberService memberService;
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +46,7 @@ public class MemberModifyAction implements Action {
 		MemberVO member = memberReq.ModifyMember();
 
 		try {
-			MemberServiceImpl.getInstance().modify(member);
+			memberService.modify(member);
 
 			HttpSession session = request.getSession();
 

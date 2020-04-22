@@ -64,8 +64,11 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void insertBoard(BoardVO board) throws SQLException {
 		SqlSession session = sessionFactory.openSession(true);
-		session.update("Board-Mapper.insertBoard",board);
-		session.close();
+		try {
+			session.update("Board-Mapper.insertBoard",board);			
+		}finally {
+			session.close();			
+		}
 	}
 
 	@Override
@@ -83,7 +86,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public void deleteBoard(int bno) throws SQLException {
 		SqlSession session = sessionFactory.openSession(true);
 		try {
-			session.update("Board-Mapper.deleteBoard", bno);			
+			session.update("Board-Mapper.deleteBoard", bno);
 		}finally {
 			session.close();			
 		}

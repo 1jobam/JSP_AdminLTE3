@@ -21,7 +21,7 @@ public class InitBeanListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent ctxEvent) {
     	String sqlSessionFactoryType = 
-       		 ctxEvent.getServletContext().getInitParameter("sqlSessionFactory");
+       		 ctxEvent.getServletContext().getInitParameter("sessionFactory");
     	String daoType = ctxEvent.getServletContext().getInitParameter("memberDAO");
     	String boardDao = ctxEvent.getServletContext().getInitParameter("boardDAO");
     	String replyDao = ctxEvent.getServletContext().getInitParameter("replyDAO");
@@ -56,18 +56,18 @@ public class InitBeanListener implements ServletContextListener {
 		
 				
 		//인스턴스 할당
-		MemberService service = MemberServiceImpl.getInstance();
+	/*	MemberService service = MemberServiceImpl.getInstance();
 	BoardService boardService = BoardServiceImpl.getInstance();	
-		ReplyService replyService = ReplyServiceImpl.getInstance();
+		ReplyService replyService = ReplyServiceImpl.getInstance();*/
 	//PdsService pdsService = PdsServiceImpl.getInstance();
 		
 		//조립
-		((MemberServiceImpl)service).setMemberDAO(memberDAO);
+	/*	((MemberServiceImpl)service).setMemberDAO(memberDAO);
 		
 		((BoardServiceImpl)boardService).setBoardDAO(boardDAO);		
 		((BoardServiceImpl)boardService).setReplyDAO(replyDAO);
 		
-		((ReplyServiceImpl)replyService).setReplyDAO(replyDAO);
+		((ReplyServiceImpl)replyService).setReplyDAO(replyDAO);*/
 		
 		//((PdsServiceImpl)pdsService).setAttachDAO(attachDAO);
 		//((PdsServiceImpl)pdsService).setPdsDAO(pdsDAO);

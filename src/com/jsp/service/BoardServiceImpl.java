@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.websocket.Session;
+
 import com.jsp.dao.BoardDAO;
 import com.jsp.dao.ReplyDAO;
 import com.jsp.dto.BoardVO;
@@ -13,13 +15,13 @@ import com.jsp.request.SearchCriteria;
 
 public class BoardServiceImpl implements BoardService {
 
-	private static BoardServiceImpl instance = new BoardServiceImpl();
-	
-	private BoardServiceImpl() {}
-	
-	public static BoardServiceImpl getInstance() {
-		return instance;
-	}
+//	private static BoardServiceImpl instance = new BoardServiceImpl();
+//	
+//	private BoardServiceImpl() {}
+//	
+//	public static BoardServiceImpl getInstance() {
+//		return instance;
+//	}
 	
 	private BoardDAO boardDAO;
 
@@ -55,7 +57,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO getBoard(int bno) throws SQLException {
-		boardDAO.increaseViewCnt(bno);		
+		boardDAO.increaseViewCnt(bno);
 		BoardVO board = boardDAO.selectBoardByBno(bno);
 		return board;
 	}

@@ -4,6 +4,6 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <script>
 	alert("${param.bno}번째 게시판 수정을 성공하셨습니다.");
-	window.close();
+	location.replace="detail.do?bno=${param.bno}";
 	window.opener.location.reload(true);
 </script>
