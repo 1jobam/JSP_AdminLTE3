@@ -66,7 +66,8 @@
   <!-- /.content-wrapper -->
 	
 <!-- Summernote -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
+<%-- <script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script> --%>
+<%@ include file="/WEB-INF/views/commons/summernote.jsp" %>
 <script>
 	$(function(){
 		$('#content').summernote({

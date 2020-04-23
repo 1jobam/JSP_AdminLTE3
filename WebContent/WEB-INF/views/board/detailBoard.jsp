@@ -86,7 +86,7 @@
 					</div>
 					<div class="card-footer">
 						<label for="newReplyWriter">Writer</label>
-						<input class="form-control" type="text" placeholder="USER ID" 
+						<input class="form-control" type="hidden" placeholder="USER ID" 
 							   id="newReplyWriter" readonly value="${loginUser.id }"> 
 						<label for="newReplyText">Reply Text</label>
 						<input class="form-control" type="text"	placeholder="REPLY TEXT" 

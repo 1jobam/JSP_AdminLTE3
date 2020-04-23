@@ -1,6 +1,7 @@
 package com.jsp.action.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,6 @@ import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
 import com.jsp.request.BoardRegistRequest;
 import com.jsp.service.BoardService;
-import com.jsp.service.BoardServiceImpl;
 
 public class BoardRegistAction implements Action {
 	
@@ -40,6 +40,11 @@ public class BoardRegistAction implements Action {
 			url = "board/regist_fail";
 		}
 		
+//		response.setContentType("text/html;charset=utf-8");
+//		PrintWriter out=response.getWriter();
+//		out.println("<script>");
+//		out.println("window.opener.location.href='list.do';window.close();");
+//		out.println("</script>");
 		
 		return url;
 	}

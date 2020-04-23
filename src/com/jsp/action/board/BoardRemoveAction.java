@@ -1,6 +1,7 @@
 package com.jsp.action.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
 import com.jsp.service.BoardService;
-import com.jsp.service.BoardServiceImpl;
 
 public class BoardRemoveAction implements Action{
 	
@@ -33,7 +33,15 @@ public class BoardRemoveAction implements Action{
 			url = "board/remove_fail";
 		}
 		
+//		response.setContentType("text/html;charset=utf-8");
+//		PrintWriter out=response.getWriter();
+//		out.println("<script>");
+//		out.println("alert('삭제되었습니다');");
+//		out.println("window.opener.location.reload(true);window.close();");
+//		out.println("</script>");
+		
 		return url;
+		
 	}
 
 }

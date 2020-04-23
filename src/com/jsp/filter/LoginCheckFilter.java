@@ -30,6 +30,11 @@ public class LoginCheckFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
+		System.out.println("내아이피 : " + request.getLocalAddr());
+		System.out.println("내 접속포트 : " + request.getLocalPort());
+		System.out.println("해킹범 아이피 : " + request.getRemoteAddr());
+		System.out.println("해킹범 호스트네임 : " + request.getRemoteHost());
+		System.out.println("해킹범 접속 포트 : " + request.getRemotePort());
 		System.out.println("filter  시작....");
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpResp = (HttpServletResponse) response;

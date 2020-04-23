@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
@@ -27,8 +28,15 @@ public class BoardDetailAction implements Action{
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
+		System.out.println(request.getQueryString());
+		
 		try {
-			BoardVO board = boardService.getBoard(bno);
+			BoardVO board;
+			if(request.getQueryString().equals("bno="+bno)) {
+				board = boardService.getBoardForModify(bno);
+			}else {
+				board = boardService.getBoard(bno);
+			}
 			request.setAttribute("board", board);
 		} catch (SQLException e) {
 			e.printStackTrace();
