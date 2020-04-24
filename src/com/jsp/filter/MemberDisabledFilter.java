@@ -14,12 +14,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jsp.dispatcher.ViewResolver;
 import com.jsp.dto.MemberVO;
-import com.jsp.utils.ViewResolver;
 
 public class MemberDisabledFilter implements Filter {
 
 	private List<String> exURLs = new ArrayList<String>();
+	private ViewResolver viewResolver;
 	
 	public void destroy() {
 
@@ -45,7 +46,7 @@ public class MemberDisabledFilter implements Filter {
 		for(String url : exURLs) {
 			if(uri.contains(url)) {
 				String urss = "commons/memberDisabledCheck";
-				ViewResolver.view(httpReq, httpRes, urss);
+				viewResolver.view(httpReq, httpRes, urss);
 				return;
 			}
 		}
@@ -84,6 +85,17 @@ public class MemberDisabledFilter implements Filter {
 		while (st.hasMoreElements()) {
 			String urlKey = st.nextToken();
 			exURLs.add(urlKey);
+		}
+		
+		String viewType = fConfig.getInitParameter("viewResolver");
+		
+		try {
+			Class<?> viewResolver = Class.forName(viewType);
+			this.viewResolver = (ViewResolver) viewResolver.newInstance();
+			System.out.println("[MemberDisabledFilter]" + viewResolver + "가 준비되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("[MemberDisabledFilter]" + viewResolver + "가 준비되지 않았습니다.");
 		}
 	}
 	

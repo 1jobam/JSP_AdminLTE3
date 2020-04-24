@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jsp.dispatcher.ViewResolver;
 import com.jsp.dto.MemberVO;
-import com.jsp.utils.ViewResolver;
 
 public class LoginCheckFilter implements Filter {
 
 	private List<String> exURLs = new ArrayList<String>();
+	private ViewResolver viewResolver;
 
 	@Override
 	public void destroy() {
@@ -54,7 +55,7 @@ public class LoginCheckFilter implements Filter {
 		// login 확인
 		if (loginUser == null) { // 비로그인 상태
 			String url = "commons/loginCheck";
-			ViewResolver.view(httpReq, httpResp, url);
+			viewResolver.view(httpReq, httpResp, url);
 		} else {	
 			chain.doFilter(request, response);
 		}
@@ -64,11 +65,22 @@ public class LoginCheckFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
+			
 		String excludeURLNames = fConfig.getInitParameter("exclude");
 		StringTokenizer st = new StringTokenizer(excludeURLNames, ",");
 		while (st.hasMoreTokens()) {
 			exURLs.add(st.nextToken());
 		}
+		
+		String viewType = fConfig.getInitParameter("viewResolver");
+		try {
+			this.viewResolver = (ViewResolver)injection(viewType);
+			System.out.println("[LoginCheckFilter]" + viewType + "가 준비되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("[LoginCheckFilter]" + viewType + "가 준비되지 않았습니다.");
+		}
+		
 	}
 
 	private boolean excludeCheck(String url) {
@@ -78,6 +90,11 @@ public class LoginCheckFilter implements Filter {
 			}
 		}
 		return false;
+	}
+	
+	public Object injection(String type) throws Exception {
+		Class<?> cls = Class.forName(type);
+		return cls.newInstance();
 	}
 
 }

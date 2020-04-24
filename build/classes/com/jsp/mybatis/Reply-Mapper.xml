@@ -29,7 +29,7 @@
 		set 
 		replytext=#{replytext},
 		updatedate=sysdate
-		where rno=#{rno}		
+		where rno=#{rno}
 	</update>
 	
 	<update id="deleteReply">
