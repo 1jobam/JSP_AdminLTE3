@@ -55,10 +55,11 @@ public class PdsDAOImpl implements PdsDAO {
 	@Override
 	public void insertPds(PdsVO pds) throws SQLException {
 		SqlSession session = sessionFactory.openSession(true);
-		
+		try {
 		session.update("Pds-Mapper.insertPds",pds);
-		
-		session.close();
+		}finally {
+			if(session!=null)session.close();			
+		}
 
 	}
 
@@ -94,7 +95,7 @@ public class PdsDAOImpl implements PdsDAO {
 
 	@Override
 	public int getSeqNextValue() throws SQLException {
-		SqlSession session = sessionFactory.openSession();
+		SqlSession session = sessionFactory.openSession(true);
 		
 		int pno=session.selectOne("Pds-Mapper.selectPdsSeqNext");
 		

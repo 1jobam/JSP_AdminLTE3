@@ -203,7 +203,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
 	        </li>
 	        <li class="nav-item" >
-                <a href="#" class="nav-link">
+                <a href="javascript:location.href='/pds/list.do'" class="nav-link">
                   <i class="fas fa-archive nav-icon"></i>
                   <p>자료실</p>
                 </a>

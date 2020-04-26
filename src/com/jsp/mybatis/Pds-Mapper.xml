@@ -100,8 +100,10 @@
 	</update>
 
 	<select id="selectPdsSeqNext" resultType="int">
-		select pds_seq.nextval
-		as pno from dual
+		select 
+			pds_seq.nextval
+		from 
+			dual
 	</select>
 </mapper>
 

@@ -20,6 +20,7 @@
 						<h4>글등록</h4>
 					</div><!--end card-header  -->
 					<div class="card-body">
+					<!-- 데이타폼형식 enctype="multipart/form-data" --> 
 						<form enctype="multipart/form-data" role="form" method="post" action="regist.do" name="registForm">
 							<div class="form-group">
 								<label for="writer">작성자</label> 
@@ -66,6 +67,26 @@
 
 <%-- <jsp:include page="regist_js.jsp" /> --%>
 <jsp:include page="attach_js.jsp" />
+
+<script>
+	$('#registBtn').on('click',function(e){
+		var form=document.registForm;
+		
+		form.encoding = "application/x-www-form-urlencoded"; 
+
+		if(form.title.value == ""){
+			alert("제목은 필수 입니다.");
+			return;
+		}
+		
+		if(form.content.value.length >= 1000){
+			alert("내용은 1000자 이하입니다.");
+			return;
+		}
+		
+		form.submit();
+	});
+</script>
 
 </body>
 
