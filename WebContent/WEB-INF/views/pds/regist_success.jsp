@@ -5,5 +5,5 @@
 <script>
 	alert("자료실 등록이 완료되었습니다.");
 	window.close();
-	window.opener.location.reload(true);
+	window.opener.location.href="list.do?page=1&perPageNum=10";
 </script>

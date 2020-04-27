@@ -54,6 +54,15 @@
 									placeholder="500자 내외로 작성하세요.">${pds.content }</textarea>
 							</div>
 							
+							<div class="form-group col-sm-12">
+								<div class="card card-outline card-success">
+									<div class="card-header">
+										<h5 style="display:inline;line-height:40px;">첨부파일 : </h5>
+									</div>
+									<div class="card-footer fileInput"></div>
+								</div>
+							</div>			
+							
 						</form>
 					</div><!--end card-body  -->
 					

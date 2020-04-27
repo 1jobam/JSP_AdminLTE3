@@ -52,25 +52,25 @@ public class PdsServiceImpl implements PdsService {
 		int pno = pdsDAO.getSeqNextValue();
 		pds.setPno(pno);
 		pdsDAO.insertPds(pds);
-//		for(AttachVO attach:pds.getAttachList()) {
-//			attach.setPno(pno);
-//			attach.setAttacher(pds.getWriter());
-//			attachDAO.insertAttach(attach);
-//		}
+		for(AttachVO attach:pds.getAttachList()) {
+			attach.setPno(pno);
+			attach.setAttacher(pds.getWriter());
+			attachDAO.insertAttach(attach);
+		}
 	}
 	@Override
 	public void modify(PdsVO pds) throws SQLException {
 		pdsDAO.updatePds(pds);		
-		//attachDAO.deleteAllAttach(pds.getPno());
-//		for(AttachVO attach:pds.getAttachList()) {
-//			attach.setPno(pds.getPno());
-//			attach.setAttacher(pds.getWriter());
-//			attachDAO.insertAttach(attach);
-//		}
+		attachDAO.deleteAllAttach(pds.getPno());
+		for(AttachVO attach:pds.getAttachList()) {
+			attach.setPno(pds.getPno());
+			attach.setAttacher(pds.getWriter());
+			attachDAO.insertAttach(attach);
+		}
 	}
 	@Override
 	public void remove(int pno) throws SQLException {
-		pdsDAO.deletePds(pno);		
+		pdsDAO.deletePds(pno);
 	}
 	@Override
 	public PdsVO read(int pno) throws SQLException {
