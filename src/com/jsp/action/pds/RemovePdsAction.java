@@ -13,41 +13,50 @@ import javax.servlet.http.HttpServletResponse;
 import com.jsp.action.Action;
 import com.jsp.dto.AttachVO;
 import com.jsp.dto.PdsVO;
+import com.jsp.request.PageMaker;
 import com.jsp.service.PdsService;
+import com.jsp.utils.CreatePageMaker;
 
-public class RemovePdsAction implements Action{
+public class RemovePdsAction implements Action {
 
 	private PdsService pdsService;
+
 	public void setPdsService(PdsService pdsService) {
 		this.pdsService = pdsService;
 	}
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url = "pds/remove_success";
 
 		int pno = Integer.parseInt(request.getParameter("pno"));
-	
+
+		
 		try {
-			//존재하는 파일삭제
+			// 존재하는 파일삭제
 			PdsVO pds = pdsService.read(pno);
 			List<AttachVO> attach = pds.getAttachList();
-			for(AttachVO attachList : attach) {
-				String attachRemove = attachList.getUploadPath() + File.separator + attachList.getFileName();
-				System.out.println(attachRemove);
-				File file = new File(attachRemove);
-				if(file.exists()) {
-					file.delete();
+			if (attach != null) {
+
+				for (AttachVO attachList : attach) {
+					String attachRemove = attachList.getUploadPath() + File.separator + attachList.getFileName();
+					System.out.println(attachRemove);
+					File file = new File(attachRemove);
+					if (file.exists()) {
+						file.delete();
+					}
 				}
 			}
-			//db 삭제
+			// db 삭제
 			pdsService.remove(pno);
-		} catch (SQLException e) {
+			PageMaker pageMaker = CreatePageMaker.pageMaker(request);
+			request.setAttribute("pageMaker", pageMaker);
+		} catch (Exception e) {
 			e.printStackTrace();
 			url = "pds/remove_fail";
 		}
-		
+
 		return url;
 	}
 

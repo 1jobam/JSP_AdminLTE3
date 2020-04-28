@@ -48,8 +48,7 @@ public class LoginAction implements Action {
 
 			e.printStackTrace();
 			url = "error/500_error";
-			request.setAttribute("exception", e);
-
+			
 		} catch (NotFoundIDException | InvalidPasswordException e) {
 
 			// e.printStackTrace();

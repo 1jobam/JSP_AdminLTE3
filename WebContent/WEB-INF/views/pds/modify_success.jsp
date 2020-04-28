@@ -4,6 +4,6 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <script>
 	alert("${pds.pno}번 자료 수정을 성공하셨습니다");
-	location.href="detail.do?pno=${pds.pno}";
+	location.href="detail.do${pageMaker.makeQuery()}&pno=${pds.pno}&form=modify";
 	window.opener.location.reload(true);
 </script>

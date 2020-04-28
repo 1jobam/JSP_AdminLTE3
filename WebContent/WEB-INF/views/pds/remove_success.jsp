@@ -4,6 +4,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <script>
 	alert("자료 삭제를 성공하셨습니다.");
-	window.opener.location.reload(true);
 	window.close();
+// 	window.opener.location.href="list.do${pageMaker.makeQuery()}";
+	opener.parent.searchList_go(${pageMaker.cri.page},"<%=request.getContextPath()%>/pds/list.do");
 </script>
